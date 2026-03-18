@@ -281,3 +281,64 @@ footer {
     color: #7f8c8d;
     width: 100%;
 }
+
+/* =========================================
+   10. MOBILE RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 768px) {
+    body {
+        overflow: auto; /* Allow scrolling on mobile */
+    }
+
+    .container {
+        flex-direction: column; /* Stack sidebar on top of content */
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .sidebar ul {
+        display: flex;
+        overflow-x: auto; /* Allow menu to scroll horizontally if too many items */
+        gap: 10px;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    .content {
+        padding: 15px;
+        width: 100%;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr; /* Stack cards in a single column */
+    }
+
+    table {
+        display: block;
+        overflow-x: auto; /* Make tables scrollable horizontally so they don't break layout */
+    }
+
+    .user-grid {
+        grid-template-columns: 1fr;
+    }
+}
