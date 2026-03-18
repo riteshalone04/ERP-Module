@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioMetrics ERP | Attendance</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>ERP INTERFACE</h2>
+            <ul>
+                <li class="active"><a href="index.html" style="text-decoration:none; color:inherit;">Dashboard</a></li>
+                <li><a href="user management.html" style="text-decoration:none; color:inherit;">User Management</a></li>
+                <li><a href="reports.html" style="text-decoration:none; color:inherit;">Reports</a></li>
+                <li><a href="settings.html" style="text-decoration:none; color:inherit;">Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>Attendance Logs</h1>
+                
+                <div class="status">
+                    Sensor Status: <span id="sensor-stat">Online</span>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="card">
+                    <h3>Present Today</h3>
+                    <p id="present-count">3</p>
+                </div>
+                <div class="card">
+    <h3>Latest Scan</h3>
+    <p id="latest-user">Waiting...</p>
+</div>
+            </div>
+
+            <section class="log-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="log-table">
+                        <tr><td>001</td><td>Dhynendra Gaurkar</td><td>08:45 AM</td><td><span class="tag in">IN</span></td></tr>
+                        <tr><td>002</td><td>Yuvraj Lokhande</td><td>08:50 AM</td><td><span class="tag in">IN</span></td></tr>
+                        <tr><td>003</td><td>Ritesh Alone</td><td>09:05 AM</td><td><span class="tag in">IN</span></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

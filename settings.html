@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | BioMetrics ERP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+    <h2>ERP Bio</h2>
+    <ul>
+        <li><a href="index.html" style="text-decoration:none; color:inherit;">Dashboard</a></li>
+        <li><a href="user management.html" style="text-decoration:none; color:inherit;">User Management</a></li>
+        <li><a href="reports.html" style="text-decoration:none; color:inherit;">Reports</a></li>
+        <li class="active"><a href="settings.html" style="text-decoration:none; color:inherit;">Settings</a></li>
+    </ul>
+</nav>
+
+<script>
+    function saveSettings() {
+        const ssid = document.getElementById('ssid').value;
+        alert("Settings for " + ssid + " sent to ESP32! Restarting...");
+    }
+</script>
+
+        <main class="content">
+            <header>
+                <h1>System Settings</h1>
+                <button class="btn-primary" onclick="saveSettings()">Save Configuration</button>
+            </header>
+
+            <div class="settings-grid">
+                <div class="card settings-card">
+                    <h3>WiFi Setup</h3>
+                    <div class="input-group">
+                        <label>Network SSID</label>
+                        <input type="text" id="ssid" class="input-field">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" class="input-field">
+                    </div>
+                </div>
+
+                <div class="card settings-card">
+                    <h3>Device Info</h3>
+                    <p><strong>IP:</strong> 192.168.1.15</p>
+                    <p><strong>Storage:</strong> 1.2MB / 4MB</p>
+                    <button class="btn-del" style="width:100%; margin-top:10px;">Reboot ESP32</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function saveSettings() {
+            const ssid = document.getElementById('ssid').value;
+            alert("Settings for " + ssid + " sent to ESP32! Restarting...");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management | BioMetrics ERP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>ERP Bio</h2>
+            <ul>
+                <li><a href="index.html" style="text-decoration:none; color:inherit;">Dashboard</a></li>
+                <li class="active"><a href="user management.html" style="text-decoration:none; color:inherit;">User Management</a></li>
+                <li><a href="reports.html" style="text-decoration:none; color:inherit;">Reports</a></li>
+                <li><a href="settings.html" style="text-decoration:none; color:inherit;">Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>User Management</h1>
+                <button class="btn-primary" onclick="startEnrollment()">+ Enroll New Fingerprint</button>
+            </header>
+
+            <div id="enroll-message" class="info-banner" style="display:none;">
+                <div class="spinner"></div>
+                <span>Waiting for ESP32... Place finger on sensor.</span>
+            </div>
+
+            <div class="user-grid">
+                <div class="user-card">
+                    <div class="avatar">DG</div>
+                    <div class="user-details"><h4>Dhynendra Gaurkar</h4><p>ID: 001</p></div>
+                    <button class="btn-del">Remove</button>
+                </div>
+                <div class="user-card">
+                    <div class="avatar">YL</div>
+                    <div class="user-details"><h4>Yuvraj Lokhande</h4><p>ID: 002</p></div>
+                    <button class="btn-del">Remove</button>
+                </div>
+                <div class="user-card">
+                    <div class="avatar">RA</div>
+                    <div class="user-details"><h4>Ritesh Alone</h4><p>ID: 003</p></div>
+                    <button class="btn-del">Remove</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        function startEnrollment() {
+            document.getElementById('enroll-message').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
