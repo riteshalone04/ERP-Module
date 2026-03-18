@@ -11,13 +11,12 @@
 body {
     background-color: #f4f7f6;
     display: flex;
-    overflow: hidden; /* Prevents double scrollbars */
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
-    width: 100vw; /* Full Viewport Width */
-    height: 100vh; /* Full Viewport Height */
+    width: 100%;
 }
 
 /* =========================================
@@ -28,13 +27,16 @@ body {
     background: #2c3e50;
     color: white;
     padding: 20px;
-    flex-shrink: 0; /* Prevents sidebar from squishing */
+    flex-shrink: 0;
+    min-height: 100vh;
+    transition: all 0.3s ease;
 }
 
 .sidebar h2 {
     margin-bottom: 30px;
     text-align: center;
     color: #3498db;
+    font-size: 1.5rem;
 }
 
 .sidebar ul {
@@ -69,48 +71,35 @@ body {
    3. MAIN CONTENT AREA
    ========================================= */
 .content {
-    flex: 1; /* This fills the remaining width on the right */
+    flex: 1;
     padding: 30px;
-    overflow-y: auto; /* Allows only the content area to scroll */
     background-color: #f4f7f6;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 30px;
-    position: relative; /* Anchor for the Designer Credit */
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 h1 {
     color: #2c3e50;
-    margin-top: 10px;
-}
-
-/* UPPER-RIGHT DESIGNER CREDIT */
-.designer-credit {
-    position: absolute;
-    top: -10px;
-    right: 0;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .status {
     background: #e1f5fe;
-    padding: 10px 20px;
+    padding: 8px 15px;
     border-radius: 20px;
     font-weight: bold;
     color: #0288d1;
-    margin-top: 25px; /* Pushes it below the credit */
+    font-size: 0.9rem;
 }
 
 /* =========================================
-   4. DASHBOARD & REPORT CARDS
+   4. DASHBOARD & CARDS
    ========================================= */
 .stats-grid {
     display: grid;
@@ -134,15 +123,16 @@ h1 {
    ========================================= */
 .log-section {
     width: 100%;
+    overflow-x: auto; /* Fixes mobile table overflow */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 table {
     width: 100%;
-    background: white;
     border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-width: 500px; /* Ensures table doesn't squish too much */
 }
 
 th, td {
@@ -210,13 +200,13 @@ th { background: #f8f9fa; color: #7f8c8d; font-weight: 600; }
 .btn-primary:hover { background: #2980b9; }
 
 .btn-del {
-    margin-left: auto;
     background: none;
     border: 1px solid #e74c3c;
     color: #e74c3c;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .btn-del:hover { background: #e74c3c; color: white; }
@@ -226,43 +216,64 @@ th { background: #f8f9fa; color: #7f8c8d; font-weight: 600; }
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 14px;
+    width: 100%;
 }
 
 /* =========================================
-   8. SETTINGS PAGE STYLES
+   8. MOBILE RESPONSIVE (CRITICAL FIX)
    ========================================= */
-.settings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
+@media (max-width: 768px) {
+    body {
+        display: block; /* Stack sidebar on top of content */
+        overflow-y: auto;
+    }
 
-.input-group {
-    margin-bottom: 15px;
-}
+    .container {
+        flex-direction: column;
+    }
 
-.input-group label {
-    display: block;
-    font-size: 0.85rem;
-    color: #7f8c8d;
-    margin-bottom: 5px;
-    font-weight: 600;
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .sidebar ul {
+        display: flex;
+        overflow-x: auto; /* Horizontal scrollable menu */
+        gap: 10px;
+        padding-bottom: 5px;
+    }
+
+    .sidebar ul li a {
+        padding: 10px 15px;
+        white-space: nowrap;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .report-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 /* =========================================
-   9. MISC (SPINNER & FOOTER)
+   9. MISC
    ========================================= */
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #f39c12;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
 .info-banner {
     background: #fff3cd;
     border: 1px solid #ffeeba;
@@ -275,70 +286,13 @@ th { background: #f8f9fa; color: #7f8c8d; font-weight: 600; }
     color: #856404;
 }
 
-footer {
-    padding: 20px;
-    text-align: center;
-    color: #7f8c8d;
-    width: 100%;
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #f39c12;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-/* =========================================
-   10. MOBILE RESPONSIVENESS
-   ========================================= */
-
-@media (max-width: 768px) {
-    body {
-        overflow: auto; /* Allow scrolling on mobile */
-    }
-
-    .container {
-        flex-direction: column; /* Stack sidebar on top of content */
-        height: auto;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        padding: 15px;
-    }
-
-    .sidebar h2 {
-        margin-bottom: 15px;
-        font-size: 1.2rem;
-    }
-
-    .sidebar ul {
-        display: flex;
-        overflow-x: auto; /* Allow menu to scroll horizontally if too many items */
-        gap: 10px;
-    }
-
-    .sidebar ul li {
-        margin-bottom: 0;
-        white-space: nowrap;
-    }
-
-    .content {
-        padding: 15px;
-        width: 100%;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr; /* Stack cards in a single column */
-    }
-
-    table {
-        display: block;
-        overflow-x: auto; /* Make tables scrollable horizontally so they don't break layout */
-    }
-
-    .user-grid {
-        grid-template-columns: 1fr;
-    }
-}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
